@@ -1,8 +1,6 @@
 pipeline {
     agent any
     stages {
-        /* "Build" and "Test" stages omitted */
-
         stage('Deploy - Staging') {
             steps {
                 sh 'echo "deploy staging"'
@@ -11,8 +9,11 @@ pipeline {
         }
 
         stage('Sanity check') {
+            agent none
             steps {
-                input "Does the staging environment look ok?"
+                timeout(time: 10, unit: 'MINUTES') {
+                    input "Does the staging environment look ok?"
+                }
             }
         }
 
