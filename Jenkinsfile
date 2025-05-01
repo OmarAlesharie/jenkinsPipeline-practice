@@ -25,9 +25,7 @@ pipeline {
             echo 'Things were different before...'
         }
     }
-}
-
-post {
+    post {
     failure {
         mail to: 'omar_esharie@hotmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
@@ -42,6 +40,9 @@ post {
              body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
     }
 }
+}
+
+
 
 
 
